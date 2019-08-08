@@ -8,4 +8,7 @@ urlpatterns = [
 
     #Read
     path('', views.index),
+
+    #Answer
+    path('<int:question_id>/answers/create/', views.answer_create),
 ]

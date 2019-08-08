@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Question
-import requests
+from .models import Question, Answer
+# import requests
 
 # Create your views here.
 def new(request):
@@ -8,12 +8,12 @@ def new(request):
 
 
 def create(request):
-    #get request info
+    # get request info
     user = request.GET.get('user')
     title = request.GET.get('title')
     content = request.GET.get('content')
 
-    #create db
+    # create db
     question = Question(title=title, content=content, user=user)    
     question.save()
     return redirect('/questions/') 
@@ -21,9 +21,22 @@ def create(request):
 
 def index(request):
     questions = Question.objects.all()
-    res = requests.get('http://www.naver.com')
+    answers = Answer.objects.all()
+    # res = requests.get('http://www.naver.com')
     context = {
         'questions': questions,
-        'res': res,
+        'answers': answers,
+        # 'res': res,
     }
     return render(request, 'index.html', context)
+
+def answer_create(request, question_id):
+    # get answer info
+    content = request.GET.get('content')
+    # get question object
+    question = Question.objects.get(id=question_id) 
+    # create answer db
+    # question id를 넣어주는게 아니라 객체 자체를 넣어줘야한다.
+    answer = Answer(content=content, question=question)
+    answer.save()
+    return redirect('/questions/') 

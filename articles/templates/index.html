@@ -2,17 +2,27 @@
 {% block body %}
   <table>
     <thead>
-      <th>user</th>
-      <th>title</th>
-      <th>content</th>
+      <th>User</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Answer</th>
     </thead>
   {% for question in questions %}
     <tbody>
       <td>{{question.user}}</td>
       <td>{{question.title}}</td>
       <td>{{question.content}}</td>
+      <td>
+        <form action="/questions/{{question.id}}/answers/create/">
+          <input type="text" name="content">
+          <input type="submit">
+        </form>
+        {% for answer in question.answer_set.all %}
+          {{answer.content}}
+        {% endfor %}
+      </td>
     </tbody>
   {% endfor %}
   </table>
-  <p>{{res}}</p>
+  <hr>
 {% endblock %}
