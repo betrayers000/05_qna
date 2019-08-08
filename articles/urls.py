@@ -5,4 +5,7 @@ urlpatterns = [
     #Create
     path('new/', views.new),
     path('create/', views.create),
+
+    #Read
+    path('', views.index),
 ]

@@ -16,3 +16,11 @@ def create(request):
     question = Question(title=title, content=content, user=user)    
     question.save()
     return redirect('/questions/') 
+
+
+def index(request):
+    questions = Question.objects.all()
+    context = {
+        'questions': questions,
+    }
+    return render(request, 'index.html', context)

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+
+  {% for question in questions %}
+  <table>
+    <thead>
+      <th>user</th>
+      <th>title</th>
+      <th>content</th>
+    </thead>
+    <tbody>
+      <td>{{question.user}}</td>
+      <td>{{question.title}}</td>
+      <td>{{question.content}}</td>
+    </tbody>
+  </table>
+  {% endfor %}
+
+{% endblock %}
