@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+  <div class="card">
+  <h5 class="card-header" style="background-color: lightsteelblue">답변목록</h5>
+{% for answer in question %}
+  <div class="card-body">
+    <p class="card-text">{{answer.content}}</p>
+  </div>
+  <hr>
+{% endfor %}
+  </div>
+</div>
+{% endblock %}

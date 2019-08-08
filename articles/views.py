@@ -40,3 +40,10 @@ def answer_create(request, question_id):
     answer = Answer(content=content, question=question)
     answer.save()
     return redirect('/questions/') 
+
+def answer_detail(request, question_id):
+    question = Question.objects.get(id=question_id)
+    context = {
+        'question': question.answer_set.all(),
+    }
+    return render(request, 'detail.html', context)

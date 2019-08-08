@@ -1,28 +1,25 @@
 {% extends 'base.html' %}
 {% block body %}
-  <table>
-    <thead>
-      <th>User</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Answer</th>
-    </thead>
+<div class="container d-flex flex-wrap justify-content-around">
   {% for question in questions %}
-    <tbody>
-      <td>{{question.user}}</td>
-      <td>{{question.title}}</td>
-      <td>{{question.content}}</td>
-      <td>
-        <form action="/questions/{{question.id}}/answers/create/">
-          <input type="text" name="content">
-          <input type="submit">
-        </form>
-        {% for answer in question.answer_set.all %}
-          {{answer.content}}
-        {% endfor %}
-      </td>
-    </tbody>
+    <div class="card my-3" style="width: 18rem;">
+      <div class="p-0 container d-flex justify-content-between pt-2 px-1 pl-3" style="background-color: lightsteelblue;">
+        <h5 class="card-title">{{question.title}}</h5>
+        <p class="card-text">{{question.user}}</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{question.content}}</p>
+        <a href="/questions/answers/{{question.id}}/detail/" class="btn btn-sm btn-outline-info">답변목록</a>
+      </div>
+    </div>
+    <form class="d-flex my-3" action="/questions/{{question.id}}/answers/create/">
+      <textarea class="form-control" name="content" style="width: 150%" cols="70"></textarea>
+      <input class="btn btn-outline-info" type="submit">
+    </form>
+    <!-- {% for answer in question.answer_set.all %}
+      {{answer.content}}
+    {% endfor %} -->
   {% endfor %}
-  </table>
+</div>
   <hr>
 {% endblock %}

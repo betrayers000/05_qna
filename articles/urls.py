@@ -11,4 +11,5 @@ urlpatterns = [
 
     #Answer
     path('<int:question_id>/answers/create/', views.answer_create),
+    path('answers/<int:question_id>/detail/', views.answer_detail),
 ]
