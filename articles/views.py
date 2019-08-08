@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Question
+import requests
 
 # Create your views here.
 def new(request):
@@ -20,7 +21,9 @@ def create(request):
 
 def index(request):
     questions = Question.objects.all()
+    res = requests.get('http://www.naver.com')
     context = {
         'questions': questions,
+        'res': res,
     }
     return render(request, 'index.html', context)
